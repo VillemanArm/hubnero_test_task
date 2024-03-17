@@ -1,8 +1,8 @@
 <script>
-// import Navbar from "@/components/Navbar.vue"
+import NavPannel from "@/components/NavPannel.vue"
 
   export default  {
-    // components: {Navbar},
+    components: {NavPannel},
       data() {
         return {
           link: 'link'
@@ -15,59 +15,51 @@
 </script>
 
 <template>
-  <div id="app">
-    <aside>
-      {{ link }}
-      {{ this.$store.state.asideLink }}
-      {{ this.$store.state.team.link }}
-    </aside>
-    <div class="main">
-      <nav>
-        <router-link to="/">Home</router-link> |
-        <router-link to="/about">About</router-link>
-      </nav>
-      <router-view/>
-    </div>
+  <div id="app" class="app">
+    <NavPannel >
+    </NavPannel>
+
+    <header class="header">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link>
+    </header>
+    <router-view class="router"/>
+
 
     </div>
 </template>
 
+<style lang='scss'>
+  @import './assets/main.sass';
 
-
-<style>
-
-</style>
-
-<style lang='sass'>
-  @import './assets/main.sass'
-
-</style>
-<!-- <script>
-
-export default  {
-  components: {},
-  props: {
-    propsTemplate: {
-      type: Function,
-      required: true,
-    },
-    },
-  data() {
-    return {
+  .app {
+    width: 100vw;
+    display: grid;
+    grid-template-areas:  
+      "nav header" 
+      "nav router";
+    grid-template-columns: 72rem 1fr;
+    grid-template-rows: 76rem 1fr;
     
-    }
-  },
-  methods: {
+    border-radius: 16rem;
+  }
 
-  },
-}
-</script>
+  .nav {
+    grid-area: nav;
 
-<template>
+    background-color: $block-background-color;
+  }
 
-</template>
+  .header {
+    grid-area: header;
 
-<style scoped lang='sass'>
-  @import '../assets/constants.sass'
+    background-color: $block-background-color;
+  }
 
-</style> -->
+  .router {
+    grid-area: router;
+
+  }
+  
+
+</style>
