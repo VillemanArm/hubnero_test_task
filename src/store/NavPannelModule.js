@@ -1,4 +1,3 @@
-// import tools from '../../public/img/nav/tools.svg'
 export const NavPannelModule = {
     state: {
         links: [
