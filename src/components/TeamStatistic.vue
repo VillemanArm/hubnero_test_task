@@ -14,8 +14,87 @@ export default  {
         }
     },
     methods: {
+        sumParams(objectsArr, key) {
+            let sum = 0
+
+            objectsArr.forEach((item => {sum += item[key]}))
+
+            return sum
+        },
+
+        getWorkDays(date) {
+            const formattedDate = date.split('.').reverse().join('.')
+            const dateInMs = new Date(formattedDate);
+            const nowInMs = Date.now();
+
+            const workMs = Math.abs(nowInMs - dateInMs);
+            const workDays = Math.ceil(workMs / (1000 * 60 * 60 * 24));
+
+            return workDays
+        }
+
+        
 
     },
+    computed: {
+        statistics() {
+            const users = this.$store.state.team.users
+
+            const statistics = [
+                {
+                    title: 'members',
+                    value: users.length,
+                    line: true,
+                },
+                {
+                    title: 'online',
+                    value: this.sumParams(users, 'isOnline'),
+                    line: true,
+                    point: true
+                },
+                {
+                    title: 'men',
+                    value: users.filter(item => item.gender === 'male').length,
+                    line: false,
+                },
+                {
+                    title: 'women',
+                    value: users.filter(item => item.gender === 'female').length,
+                    line: true,
+                },
+                {
+                    title: 'average age',
+                    value: Math.round(this.sumParams(users, 'age') / users.length),
+                    line: true,
+                    point: false
+                },
+                {
+                    title: 'days work on average',
+                    value: Math.round(this.workDays.reduce((sum, val) => sum + val) / users.length),
+                    line: true,
+                    point: false
+                },
+                {
+                    title: 'days work newest employee',
+                    value: Math.min(...this.workDays),
+                    line: true,
+                    point: false
+                },
+                {
+                    title: 'days work oldest employee',
+                    value: Math.max(...this.workDays),
+                    line: true,
+                    point: false
+                },
+            ]
+
+            return statistics
+        },
+        workDays() {
+            const users = this.$store.state.team.users
+            return users.map(user => this.getWorkDays(user.hireDate))
+        }
+    }
 }
 </script>
 
@@ -30,7 +109,12 @@ export default  {
                 <path d="M1.66667 11.3191C2.5 10.6525 3.7225 10.2083 5 10.2083" stroke="evenodd" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M13.8258 16.4583C12.855 15.7075 11.46 15.2083 10 15.2083C8.54 15.2083 7.145 15.7075 6.17417 16.4583" stroke="evenodd" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-
+        </div>
+        <span class="team-statistic__title">
+            Team
+        </span>
+        <div class="team-statistic__info">
+            <span>i</span>
         </div>
 
     </div>
@@ -61,5 +145,23 @@ export default  {
         stroke: $blue
         border-radius: 8rem
 
+    .team-statistic__title
+        margin-left: 16rem
+        font-weight: 500
+
+    .team-statistic__info
+        width: 14rem
+        height: 14rem
+        margin-left: 4rem
+        margin-top: -4rem
+        display: flex
+        align-items: center
+        justify-content: center
+
+        font-size: 12rem
+
+        border-radius: 50%
+        background-color: $background-color
+        cursor: pointer
 
 </style>
