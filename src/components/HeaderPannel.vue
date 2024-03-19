@@ -48,14 +48,14 @@ export default  {
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M2.563 8.188V8.188C2.563 5.685 4.592 3.657 7.094 3.657H8.907C11.41 3.657 13.438 5.686 13.438 8.188V8.188V10.985C13.438 11.515 13.649 12.024 14.024 12.399L14.665 13.04C15.04 13.415 15.251 13.924 15.251 14.454V14.454C15.251 15.498 14.405 16.344 13.361 16.344H2.64C1.596 16.344 0.75 15.498 0.75 14.454V14.454C0.75 13.924 0.961 13.415 1.336 13.04L1.977 12.399C2.352 12.024 2.563 11.515 2.563 10.985V8.188Z" stroke="evenodd" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
 
-                <div class="header__notifications-allert"></div>
+                <div v-if="$store.state.header.isUnreadNotification" class="header__notifications-allert"></div>
             </div>
             <div class="header__user">
                 <div class="header__user-avatar">
-                    <img src="https://insight-webstudio.ru/files_for_another_projects/avatar_1.png" alt="avatar">
+                    <img :src="$store.state.header.user.avatar" alt="avatar">
                 </div>
                 <div class="header__user-name">
-                    Ernest Eberly
+                    {{$store.state.header.user.name}} {{$store.state.header.user.lastName}}
                 </div>
                 <div class="header__user-button">
                     <svg width="9" height="6" viewBox="0 0 9 6" fill="none" stroke="#8591AE" xmlns="http://www.w3.org/2000/svg">
@@ -150,6 +150,10 @@ export default  {
 
         & img
             border-radius: 8rem
+
+    .header__user-name
+        font-weight: 500
+        font-size: 14rem
 
     .header__user-button
         width: 20rem
