@@ -153,7 +153,6 @@ export default  {
 
     .header__user-name
         font-weight: 500
-        font-size: 14rem
 
     .header__user-button
         width: 20rem
