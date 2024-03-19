@@ -1,4 +1,4 @@
-export const teamModule = {
+export const TeamModule = {
     state: {
         link: 'link from teamModule'
     },
@@ -12,7 +12,7 @@ export const teamModule = {
         // setPosts(state, posts) {
         //     state.posts = posts;
         // },
-       
+
     },
     actions: {
         // async getPosts({state, commit}) {
@@ -37,7 +37,7 @@ export const teamModule = {
         //         commit('setPostsLoading', false)
         //     }
         // },
-        
+
     },
     namespaced: true,
 }

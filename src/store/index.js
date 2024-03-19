@@ -1,5 +1,5 @@
 // import { createStore } from 'vuex'
-import { teamModule } from '@/store/teamModule'
+import { TeamModule } from '@/store/TeamModule'
 import { NavPannelModule } from '@/store/NavPannelModule'
 
 import Vue from 'vue'
@@ -14,7 +14,7 @@ export default new Vuex.Store({
     getters: {
     },
     modules: { // данные импортируемые для отдельных компонентов, чтобы не засорять глобальный store
-        team: teamModule,
+        team: TeamModule,
         nav: NavPannelModule
     },
 })

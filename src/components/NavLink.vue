@@ -23,7 +23,7 @@ export default  {
 </script>
 
 <template>
-    <div class="nav-link">
+    <router-link  :to="link.link" class="nav-link">
         <div class="nav-link__selector">
             <svg 
                 width="4" 
@@ -36,22 +36,16 @@ export default  {
             >
             <path d="M4 4C4 1.79086 2.20914 0 0 0V20C2.20914 20 4 18.2091 4 16V4Z"/>
             </svg>
-
         </div>
-
-        <router-link 
-            :to="link.link"
-        >   
-            <div 
-                class="nav-link__icon" 
-                :style="{
-                    stroke: $route.path === link.link ? '#8F20EF' : '#8591AE'
-                }"
-                v-html="link.icon"
-            >
-            </div>
-        </router-link>
-    </div>
+        <div 
+            class="nav-link__icon" 
+            :style="{
+                stroke: $route.path === link.link ? '#8F20EF' : '#8591AE'
+            }"
+            v-html="link.icon"
+        >
+        </div>
+    </router-link>
 
 </template>
 

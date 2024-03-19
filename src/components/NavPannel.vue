@@ -22,19 +22,22 @@ export default  {
 
 <template>
     <div class="nav">
-    <div class="nav-logo">
-        <div class="nav-logo__img">
-            <img src="/img/nav/logo.svg" alt="hubnero">
+        <div class="nav__block">
+            <div class="nav-logo">
+                <div class="nav-logo__img">
+                    <img src="/img/nav/logo.svg" alt="hubnero">
+                </div>
+            </div>
+            <div class="nav-links">
+                <NavLink 
+                    v-for="(link, index) in $store.state.nav.links" 
+                    :key="index" 
+                    :to="link.link"
+                    :link="link"
+                />
+            </div>
         </div>
-    </div>
-    <div class="nav-links">
-        <NavLink 
-            v-for="(link, index) in $store.state.nav.links" 
-            :key="index" 
-            :to="link.link"
-            :link="link"
-        />
-    </div>
+
     <div class="nav-add">
         <button type="button" class="nav-add__button">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#8591AE" xmlns="http://www.w3.org/2000/svg">
@@ -51,7 +54,8 @@ export default  {
 
     .nav
         min-height: 100vh
-        position: relative
+        display: grid
+        align-content: space-between 
 
     .nav-logo
         height: 76rem
@@ -66,13 +70,11 @@ export default  {
     .nav-add
         height: 76rem
         width: 100%
-        position: absolute
-        bottom: 0
         display: flex
         align-items: center
         justify-content: center
 
-        border-top: 2rem solid $background-color
+        border-top: 2rem solid $light-grey
 
     .nav-add__button
         width: 20rem

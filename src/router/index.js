@@ -20,7 +20,42 @@ const routes = [
     path: '/tools',
     name: 'tools',
     component: ToolsPage
-  }
+  },
+  {
+    path: '/statistics',
+    name: 'statistics',
+    //component: StatisticsPage
+  },
+  {
+    path: '/money',
+    name: 'money',
+    //component: MoneyPage
+  },
+  {
+    path: '/links',
+    name: 'links',
+    //component: ToolsPage
+  },
+  {
+    path: '/page',
+    name: 'page',
+    //component: ToolsPage
+  },
+  {
+    path: '/leads',
+    name: 'leads',
+    //component: ToolsPage
+  },
+  {
+    path: '/settings',
+    name: 'settings',
+    //component: ToolsPage
+  },
+  {
+    path: '/business',
+    name: 'business',
+    //component: ToolsPage
+  },
 ]
 
 const router = new VueRouter({

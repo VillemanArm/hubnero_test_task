@@ -1,11 +1,11 @@
 <script>
 import NavPannel from "@/components/NavPannel.vue"
+import HeaderPannel from "@/components/HeaderPannel.vue"
 
   export default  {
-    components: {NavPannel},
+    components: {NavPannel, HeaderPannel},
       data() {
         return {
-          link: 'link'
         }
       },
     // mounted() {
@@ -16,13 +16,10 @@ import NavPannel from "@/components/NavPannel.vue"
 
 <template>
   <div id="app" class="app">
-    <NavPannel >
-    </NavPannel>
+    <NavPannel />
 
-    <header class="header">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </header>
+    <HeaderPannel class="header"/>
+
     <router-view class="router"/>
 
 
