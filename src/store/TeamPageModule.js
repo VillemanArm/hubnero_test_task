@@ -13,7 +13,7 @@ export const TeamPageModule = {
                 lastLogin: '03.11.2021',
                 isOnline: true,
                 gender: 'female',
-                hireDate: '01.02.2021',
+                hireDate: '01.02.2023',
                 avatar: 'https://insight-webstudio.ru/files_for_another_projects/avatar_1.png',
             },
             {

@@ -1,7 +1,8 @@
 <script>
+import TeamStatisticItem from '@/components/TeamStatisticItem'
 
 export default  {
-    components: {},
+    components: {TeamStatisticItem},
     props: {
         propsTemplate: {
             type: Function,
@@ -83,8 +84,7 @@ export default  {
                 {
                     title: 'days work oldest employee',
                     value: Math.max(...this.workDays),
-                    line: true,
-                    point: false
+
                 },
             ]
 
@@ -116,6 +116,7 @@ export default  {
         <div class="team-statistic__info">
             <span>i</span>
         </div>
+        <TeamStatisticItem v-for="item in statistics" :key="item.title" :item="item"/>
 
     </div>
 
@@ -154,6 +155,7 @@ export default  {
         height: 14rem
         margin-left: 4rem
         margin-top: -4rem
+        margin-right: 36rem
         display: flex
         align-items: center
         justify-content: center
