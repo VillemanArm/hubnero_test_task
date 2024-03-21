@@ -84,7 +84,8 @@ export default  {
                 {
                     title: 'days work oldest employee',
                     value: Math.max(...this.workDays),
-
+                    line: false,
+                    point: false
                 },
             ]
 
@@ -116,7 +117,7 @@ export default  {
         <div class="team-statistic__info">
             <span>i</span>
         </div>
-        <TeamStatisticItem v-for="item in statistics" :key="item.title" :item="item"/>
+        <TeamStatisticItem v-for="item in statistics" :key="item.title" :item="item"/><!-- При изменении количества статистик разработать вариант для переполнения -->
 
     </div>
 
