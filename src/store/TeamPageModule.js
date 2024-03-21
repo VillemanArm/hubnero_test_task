@@ -1,7 +1,10 @@
 export const TeamPageModule = {
     state: {
+        isSortDescending: true,
+        sortOption: '',
         users: [
             {
+                id: 1,
                 name: 'Sarah',
                 lastName: 'Connor',
                 team: 'Crosty',
@@ -17,6 +20,7 @@ export const TeamPageModule = {
                 avatar: 'https://insight-webstudio.ru/files_for_another_projects/avatar_1.png',
             },
             {
+                id: 2,
                 name: 'Ernest',
                 lastName: 'Eberly',
                 team: 'Flamethrower',
@@ -32,6 +36,7 @@ export const TeamPageModule = {
                 avatar: 'https://insight-webstudio.ru/files_for_another_projects/avatar_1.png',
             },
             {
+                id: 3,
                 name: 'Arnold',
                 lastName: 'Brown',
                 team: 'Gunters',
@@ -49,15 +54,25 @@ export const TeamPageModule = {
         ]
     },
     getters: {
-        // sortedAndSearchedPosts(state, getters) {
+        sortedUsers(state) {
+            if (state.isSortDescending) {
+                return [...state.users].sort((user1, user2) => user1[state.sortOption]?.localeCompare(user2[state.sortOption]))
+            }
+
+            return [...state.users].sort((user1, user2) => user2[state.sortOption]?.localeCompare(user1[state.sortOption]))
+        },
+        // sortedAndSearchedUsers(state, getters) {
         //     return getters.sortedPosts.filter(post => post.title.toLowerCase().includes(state.searchQuery) || post.body.toLowerCase().includes(state.searchQuery))
         // },
 
     },
     mutations: {
-        // setPosts(state, posts) {
-        //     state.posts = posts;
-        // },
+        setIsSortDescending(state, bool) {
+            state.isSortDescending = bool;
+        },
+        setSortOption(state, option) {
+            state.sortOption = option
+        },
 
     },
     actions: {

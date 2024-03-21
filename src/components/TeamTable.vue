@@ -1,8 +1,9 @@
 <script>
 import TeamTableItem from '@/components/TeamTableItem'
+import TeamTableIRow from '@/components/TeamTableIRow'
 
 export default  {
-    components: {TeamTableItem},
+    components: { TeamTableItem, TeamTableIRow },
     props: {
         // propsTemplate: {
         //     type: Function,
@@ -16,41 +17,49 @@ export default  {
                     name: "Business Name",
                     isSortable: true,
                     isSearchable: true,
+                    sortOption: 'lastName',
                 },
                 {
                     name: "Team",
                     isSortable: true,
                     isSearchable: false,
+                    sortOption: 'team',
                 },
                 {
                     name: "Role",
                     isSortable: true,
                     isSearchable: false,
+                    sortOption: 'role',
                 },
                 {
                     name: "Gmail",
                     isSortable: true,
                     isSearchable: true,
+                    sortOption: 'gmail',
                 },
                 {
                     name: "Birthday",
                     isSortable: true,
                     isSearchable: false,
+                    sortOption: 'birthday',
                 },
                 {
                     name: "Telegram",
                     isSortable: true,
                     isSearchable: false,
+                    sortOption: 'telegram',
                 },
                 {
                     name: "Last Login",
                     isSortable: true,
                     isSearchable: false,
+                    sortOption: 'lastLogin',
                 },
                 {
                     name: "User permissions",
                     isSortable: false,
                     isSearchable: false,
+                    
                 },
             ]
         }
@@ -65,17 +74,18 @@ export default  {
     <div class="team-table">
         <div class="team-table__list">
             <div class="team-table__head row">
-                <TeamTableItem v-for="item in tableColumns" :key="item.name" :item="item"/>
+                <TeamTableItem v-for="item in tableColumns" :key="item.name" :item="item" />
             </div>
-
-            <div class="team-table__row row"></div>
+            <TeamTableIRow v-for="user in $store.getters['team/sortedUsers']" :key="user.id" :user="user"/>
+            
         </div>
-        <div class="team-table__nav"></div>
+        <div class="team-table__nav">
+        </div>
     </div>
 
 </template>
 
-<style scoped lang='sass'>
+<style lang='sass'>
     @import '../assets/constants.sass'
 
     .team-table
@@ -89,6 +99,7 @@ export default  {
 
     .team-table__head
         background-color: $background-color
+        border-radius: 12rem
 
     .row
         display: grid
