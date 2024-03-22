@@ -89,7 +89,7 @@ export default  {
     @import '../assets/constants.sass'
 
     .team-table
-        width: 1792rem        
+        width: 1788rem        
 
         &>div
             padding: 16rem
