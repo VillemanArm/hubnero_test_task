@@ -3,21 +3,26 @@ import AutoInput from '@/components/UI/AutoInput'
 
 export default  {
     components: { AutoInput },
-    // props: {
-    //     item: {
-    //         type: Object,
-    //         required: true,
-    //     },
-        // },
+    props: {
+        searchField: {
+            type: String,
+            required: true,
+        },
+        },
     data() {
         return {
             isSearch: false
         }
     },
     methods: {
-        changeSearchStatus() {
-            this.isSearch = !this.isSearch           
+        setSearchParams() {
+            this.isSearch = !this.isSearch    
+            this.$store.commit('team/setSearchField', this.searchField )
         },
+        handleInput(query) {
+            this.$store.commit('team/setSearchQuery', query)
+            console.log(this.$store.getters['team/sortedAndSearchedUsers'])
+        }
         
 
     },
@@ -29,7 +34,7 @@ export default  {
         item__search: true,
         item__search_active: isSearch,
         }">
-        <div class="item__search-icon" @click="changeSearchStatus()">
+        <div class="item__search-icon" @click="setSearchParams()">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#8591AE"
                 xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -39,7 +44,7 @@ export default  {
                     stroke-linejoin="round" />
             </svg>
         </div>
-        <AutoInput v-if="isSearch" class="item__search-input" />
+        <AutoInput v-if="isSearch" class="item__search-input" :handleInput="handleInput" />
 
     </div>
 

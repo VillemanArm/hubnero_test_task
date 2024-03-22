@@ -37,12 +37,12 @@ export default  {
         },
     },
 }
+//@input="debounce((event) => {handleInput(event.target.value, id)}, 500)"
 </script>
 
 <template>
-    <input type="text" class='text-input' :placeholder="placeholder"
-        @input="debounce((event) => {handleInput(event.target.value, id)}, 500)"
-    />
+    <input ref="input" type="text" class='text-input' :placeholder="placeholder"
+        @input="debounce(handleInput($refs.input.value, id), 500)" />
 
 </template>
 

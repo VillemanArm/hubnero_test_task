@@ -4,10 +4,6 @@ import TeamStatisticItem from '@/components/TeamStatisticItem'
 export default  {
     components: {TeamStatisticItem},
     props: {
-        propsTemplate: {
-            type: Function,
-            required: true,
-        },
         },
     data() {
         return {

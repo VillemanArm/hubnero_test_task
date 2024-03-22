@@ -2,11 +2,12 @@ export const TeamPageModule = {
     state: {
         isSortDescending: true,
         sortOption: '',
+        searchQuery: '',
+        searchField: '',
         users: [
             {
                 id: 1,
-                name: 'Sarah',
-                lastName: 'Connor',
+                name: 'Sarah Connor',
                 team: 'Crosty',
                 role: 'Team Lead',
                 gmail: 'sarahconnor@gmail.com',
@@ -21,8 +22,7 @@ export const TeamPageModule = {
             },
             {
                 id: 2,
-                name: 'Ernest',
-                lastName: 'Eberly',
+                name: 'Ernest Eberly',
                 team: 'Flamethrower',
                 role: 'Semantic Specialist',
                 gmail: 'ernesteberly@gmail.com',
@@ -37,8 +37,7 @@ export const TeamPageModule = {
             },
             {
                 id: 3,
-                name: 'Arnold',
-                lastName: 'Brown',
+                name: 'Arnold Brown',
                 team: 'Gunters',
                 role: 'Seo Specialist',
                 gmail: 'arnoldbrown@gmail.com',
@@ -54,6 +53,7 @@ export const TeamPageModule = {
         ]
     },
     getters: {
+
         sortedUsers(state) {
             if (state.isSortDescending) {
                 return [...state.users].sort((user1, user2) => user1[state.sortOption]?.localeCompare(user2[state.sortOption]))
@@ -61,9 +61,13 @@ export const TeamPageModule = {
 
             return [...state.users].sort((user1, user2) => user2[state.sortOption]?.localeCompare(user1[state.sortOption]))
         },
-        // sortedAndSearchedUsers(state, getters) {
-        //     return getters.sortedPosts.filter(post => post.title.toLowerCase().includes(state.searchQuery) || post.body.toLowerCase().includes(state.searchQuery))
-        // },
+        sortedAndSearchedUsers(state, getters) {
+            if (state.searchField && state.searchQuery) {
+                return getters.sortedUsers.filter(user => user[state.searchField].toLowerCase().includes(state.searchQuery))
+            }
+            return getters.sortedUsers
+            
+        },
 
     },
     mutations: {
@@ -72,6 +76,12 @@ export const TeamPageModule = {
         },
         setSortOption(state, option) {
             state.sortOption = option
+        },
+        setSearchQuery(state, query) {
+            state.searchQuery = query
+        },
+        setSearchField(state, fieldName) {
+            state.searchField = fieldName
         },
 
     },

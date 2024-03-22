@@ -26,7 +26,7 @@ export default  {
                 <img :src="user.avatar" alt="">
             </div>
             <div class="table-row__text">
-                {{ `${user.name} ${user.lastName}` }}
+                {{ user.name }}
             </div>
         </div>
         <div class="table-row__item">

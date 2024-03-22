@@ -31,7 +31,7 @@ export default  {
 <template>
     <div class="item">
         <div class="item__search">
-            <TeamTableSearch v-if="item.isSearchable" />
+            <TeamTableSearch v-if="item.isSearchable" :searchField="item.sortOption"/>
         </div>
         <div class="item__name">
             {{ item.name }}

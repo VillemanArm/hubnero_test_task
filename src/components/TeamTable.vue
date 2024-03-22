@@ -17,7 +17,7 @@ export default  {
                     name: "Business Name",
                     isSortable: true,
                     isSearchable: true,
-                    sortOption: 'lastName',
+                    sortOption: 'name',
                 },
                 {
                     name: "Team",
@@ -76,7 +76,7 @@ export default  {
             <div class="team-table__head row">
                 <TeamTableItem v-for="item in tableColumns" :key="item.name" :item="item" />
             </div>
-            <TeamTableIRow v-for="user in $store.getters['team/sortedUsers']" :key="user.id" :user="user"/>
+            <TeamTableIRow v-for="user in $store.getters['team/sortedAndSearchedUsers']" :key="user.id" :user="user"/>
             
         </div>
         <div class="team-table__nav">
