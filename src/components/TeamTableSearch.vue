@@ -11,14 +11,19 @@ export default  {
         },
     data() {
         return {
-            isSearch: false
+
         }
     },
     methods: {
-        setSearchParams() {
-            this.isSearch = !this.isSearch    
-            this.$store.commit('team/setSearchField', this.searchField )
+        setSearchParams() {  
+            if (this.searchField !== this.$store.state.team.searchField) {
+                this.$store.commit('team/setSearchField', this.searchField)
+                this.$store.commit('team/setSearchQuery', '')
+            } else {
+                this.$store.commit('team/setSearchField', '')
+            }
         },
+
         handleInput(query) {
             this.$store.commit('team/setSearchQuery', query)
             console.log(this.$store.getters['team/sortedAndSearchedUsers'])
@@ -32,7 +37,7 @@ export default  {
 <template>
     <div :class="{
         item__search: true,
-        item__search_active: isSearch,
+    item__search_active: searchField === $store.state.team.searchField,
         }">
         <div class="item__search-icon" @click="setSearchParams()">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#8591AE"
@@ -44,7 +49,8 @@ export default  {
                     stroke-linejoin="round" />
             </svg>
         </div>
-        <AutoInput v-if="isSearch" class="item__search-input" :handleInput="handleInput" />
+        <AutoInput v-if="searchField === $store.state.team.searchField" class="item__search-input"
+            :handleInput="handleInput" />
 
     </div>
 
