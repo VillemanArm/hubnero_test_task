@@ -54,7 +54,7 @@ export default  {
 </template>
 
 <style lang='sass'>
-    @import '../assets/constants.sass'
+    @import '@/assets/constants.sass'
 
     .team
         padding: 28rem
@@ -74,6 +74,8 @@ export default  {
         border-radius: 12rem
         outline: none
         border: 2rem solid $accent-color  
+        transition: all ease 0.2s 
+        cursor: pointer
 
         &:hover          
             background-color: $block-background-color

@@ -63,30 +63,42 @@ export default  {
             lastLogin: '',
             isOnline: '',
             gender: '',
-            avatar: 'https://insight-webstudio.ru/files_for_another_projects/no_avatar.png'
+            avatar: 'https://insight-webstudio.ru/files_for_another_projects/no_avatar.png',
+            isRequiredFieldsNotFilledIn: false,
         }
+
     },
     methods: {
         handleSubmit(submit) {
             submit.preventDefault()
 
-            const newUser = {
-                id: Date.now(),
-                name: this.name.value,
-                team: this.team.value,
-                role: this.role.value,
-                gmail: this.gmail.value,
-                birthday: this.birthday.value,
-                age: +this.age.value,
-                telegram: this.telegram.value,
-                lastLogin: '',
-                isOnline: false,
-                gender: this.gender,
-                hireDate: this.hireDate.value,
-                avatar: 'https://insight-webstudio.ru/files_for_another_projects/no_avatar.png',
+            if (this.name.value && this.telegram.value && this.hireDate.value) {
+                this.isRequiredFieldsNotFilledIn = false
+                
+                const newUser = {
+                    id: Date.now(),
+                    name: this.name.value,
+                    team: this.team.value,
+                    role: this.role.value,
+                    gmail: this.gmail.value,
+                    birthday: this.birthday.value,
+                    age: +this.age.value,
+                    telegram: this.telegram.value,
+                    lastLogin: '',
+                    isOnline: false,
+                    gender: this.gender,
+                    hireDate: this.hireDate.value,
+                    avatar: 'https://insight-webstudio.ru/files_for_another_projects/no_avatar.png',
+                }
+
+                this.$store.commit('team/addUser', newUser)
+
+                submit.target.reset()
+            } else {
+                this.isRequiredFieldsNotFilledIn = true
             }
 
-            this.$store.commit('team/addUser', newUser)
+
 
         },
         validateInput(regExp, variable) {
@@ -129,7 +141,6 @@ export default  {
             </div>
         </div>
 
-
         <div class="employee-add__row">
             <label for="role" class="employee-add__label">Role:</label>
             <div>
@@ -138,7 +149,6 @@ export default  {
                 <div v-if="role.isError" class="employee-add__error">{{ role.errorMessage }}</div>
             </div>
         </div>
-
 
         <div class="employee-add__row">
             <label for="gmail" class="employee-add__label">Gmail:</label>
@@ -149,6 +159,23 @@ export default  {
             </div>
         </div>
 
+        <div class="employee-add__row">
+            <label for="telegram" class="employee-add__label">Telegram*:</label>
+            <div>
+                <AutoInput name="telegram" class="employee-add__input" :placeholder="'@example'"
+                    :handleInput="validateInput(telegramRegExp, telegram)" />
+                <div v-if="telegram.isError" class="employee-add__error">{{ telegram.errorMessage }}</div>
+            </div>
+        </div>
+
+        <div class="employee-add__row">
+            <label for="hireDate" class="employee-add__label">Hire date*:</label>
+            <div>
+                <AutoInput name="hireDate" class="employee-add__input" :placeholder="'01.01.2000'"
+                    :handleInput="validateInput(dateRegExp, hireDate)" />
+                <div v-if="hireDate.isError" class="employee-add__error">{{ hireDate.errorMessage }}</div>
+            </div>
+        </div>
 
         <div class="employee-add__row">
             <label for="birthday" class="employee-add__label">Birthday:</label>
@@ -159,17 +186,6 @@ export default  {
             </div>
         </div>
 
-
-        <div class="employee-add__row">
-            <label for="telegram" class="employee-add__label">Telegram*:</label>
-            <div>
-                <AutoInput name="telegram" class="employee-add__input" :placeholder="'@example'"
-                    :handleInput="validateInput(telegramRegExp, telegram)" />
-                <div v-if="telegram.isError" class="employee-add__error">{{ telegram.errorMessage }}</div>
-            </div>
-        </div>
-
-
         <div class=" employee-add__row">
             <label for="gender" class="employee-add__label">Gender:</label>
             <select name="gender" class="employee-add__input" v-model="gender">
@@ -179,14 +195,8 @@ export default  {
             </select>
         </div>
 
-
-        <div class="employee-add__row">
-            <label for="hireDate" class="employee-add__label">Hire date:</label>
-            <div>
-                <AutoInput name="hireDate" class="employee-add__input" :placeholder="'01.01.2000'"
-                    :handleInput="validateInput(dateRegExp, hireDate)" />
-                <div v-if="hireDate.isError" class="employee-add__error">{{ hireDate.errorMessage }}</div>
-            </div>
+        <div class="employee-add__error-wrapper">
+            <div class="employee-add__error" v-if="isRequiredFieldsNotFilledIn">Fill in the required fields (marked with an asterisk)</div>
         </div>
 
         <div class="employee-add__buttons">
@@ -232,10 +242,16 @@ export default  {
 
         color: $red
 
+    .employee-add__error-wrapper
+        min-height: 18rem
+        display: flex
+        justify-content: end
+
     .employee-add__buttons
         display: flex
         justify-content: end
         gap: 12rem
+
 
     
 

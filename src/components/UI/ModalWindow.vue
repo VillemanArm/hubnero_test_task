@@ -92,6 +92,7 @@ export default {
         outline: none
         border: 2rem solid $accent-color  
         cursor: pointer
+        transition: all ease 0.2s 
 
         &:hover          
             background-color: $block-background-color

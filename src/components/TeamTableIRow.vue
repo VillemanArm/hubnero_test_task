@@ -85,7 +85,7 @@ export default  {
 </template>
 
 <style lang='sass'>
-    @import '../assets/constants.sass'
+    @import '@/assets/constants.sass'
 
     .table-row
         height: 64rem
@@ -118,6 +118,7 @@ export default  {
         border: 2px solid $light-grey
         border-radius: 8rem
         cursor: pointer
+        transition: all ease 0.2s 
 
         &:hover
             border-color: $accent-color
@@ -128,6 +129,7 @@ export default  {
 
     .table-row__delete
         cursor: pointer
+        transition: all ease 0.2s 
 
         &:hover
             stroke: $accent-color
