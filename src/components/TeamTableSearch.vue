@@ -26,7 +26,6 @@ export default  {
 
         handleInput(query) {
             this.$store.commit('team/setSearchQuery', query)
-            console.log(this.$store.getters['team/sortedAndSearchedUsers'])
         }
         
 

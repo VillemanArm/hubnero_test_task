@@ -50,7 +50,8 @@ export const TeamPageModule = {
                 hireDate: '01.08.2020',
                 avatar: 'https://insight-webstudio.ru/files_for_another_projects/avatar_1.png',
             },
-        ]
+        ],
+
     },
     getters: {
 
@@ -82,6 +83,9 @@ export const TeamPageModule = {
         },
         setSearchField(state, fieldName) {
             state.searchField = fieldName
+        },
+        addUser(state, newUser) {
+            state.users.push(newUser)
         },
 
     },
