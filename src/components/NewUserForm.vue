@@ -45,11 +45,6 @@ export default  {
                 isError: false,
                 errorMessage: 'enter the name in the format: 01.01.2000'
             }, 
-            age: {
-                value: '',
-                isError: false,
-                errorMessage: 'enter the name in the format: 29'
-            }, 
             telegram: {
                 value: '',
                 isError: false,
@@ -68,13 +63,23 @@ export default  {
         }
 
     },
+    computed: {
+        age() {
+            const now = Date.now()
+            console.log(now)
+            const birthday = new Date(this.birthday.value.split('.').reverse().join('.'))
+            console.log(birthday)
+            const usersAge = Math.floor((now - birthday.getTime()) / (1000 * 60 * 60 * 24 * 365))
+            return usersAge
+        }, 
+    },
     methods: {
         handleSubmit(submit) {
             submit.preventDefault()
 
-            if (this.name.value && this.telegram.value && this.hireDate.value) {
+            if (this.name.value && this.telegram.value && this.hireDate.value && this.birthday.value) {
                 this.isRequiredFieldsNotFilledIn = false
-                
+
                 const newUser = {
                     id: Date.now(),
                     name: this.name.value,
@@ -82,7 +87,7 @@ export default  {
                     role: this.role.value,
                     gmail: this.gmail.value,
                     birthday: this.birthday.value,
-                    age: +this.age.value,
+                    age: this.age,
                     telegram: this.telegram.value,
                     lastLogin: '',
                     isOnline: false,
@@ -107,7 +112,6 @@ export default  {
                 variable.isError = false
                 if (regExp.test(value)) {
                     variable.value = value;
-                    console.log(variable.value)
                 } else {
                     variable.isError = true
                 }
@@ -178,7 +182,7 @@ export default  {
         </div>
 
         <div class="employee-add__row">
-            <label for="birthday" class="employee-add__label">Birthday:</label>
+            <label for="birthday" class="employee-add__label">Birthday*:</label>
             <div>
                 <AutoInput name="birthday" class="employee-add__input" :placeholder="'01.01.2000'"
                     :handleInput="validateInput(dateRegExp, birthday)" />
