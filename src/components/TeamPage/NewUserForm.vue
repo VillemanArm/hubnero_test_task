@@ -66,9 +66,7 @@ export default  {
     computed: {
         age() {
             const now = Date.now()
-            console.log(now)
             const birthday = new Date(this.birthday.value.split('.').reverse().join('.'))
-            console.log(birthday)
             const usersAge = Math.floor((now - birthday.getTime()) / (1000 * 60 * 60 * 24 * 365))
             return usersAge
         }, 
@@ -213,7 +211,7 @@ export default  {
 </template>
 
 <style scoped lang='sass'>
-    @import '../assets/constants.sass'
+    @import '@/assets/constants.sass'
 
     .employee-add__row
         display: grid

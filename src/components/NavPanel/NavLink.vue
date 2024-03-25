@@ -50,7 +50,7 @@ export default  {
 </template>
 
 <style lang='sass'>
-    @import '../assets/constants.sass'
+    @import '@/assets/constants.sass'
 
     .nav-link
         height: 44rem

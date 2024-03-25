@@ -57,7 +57,7 @@ export default  {
 </template>
 
 <style lang='sass'>
-    @import '../assets/constants.sass'
+    @import '@/assets/constants.sass'
 
     .item__search
         position: relative

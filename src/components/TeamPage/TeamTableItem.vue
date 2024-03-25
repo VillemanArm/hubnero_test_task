@@ -1,5 +1,5 @@
 <script>
-import TeamTableSearch from '@/components/TeamTableSearch'
+import TeamTableSearch from '@/components/TeamPage/TeamTableSearch'
 
 export default  {
     components: { TeamTableSearch },
@@ -58,7 +58,7 @@ export default  {
 </template>
 
 <style lang='sass'>
-    @import '../assets/constants.sass'
+    @import '@/assets/constants.sass'
 
     .item
         height: 64rem

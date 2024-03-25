@@ -72,7 +72,7 @@ export default  {
 </template>
 
 <style scoped lang='sass'>
-    @import '../assets/constants.sass'
+    @import '@/assets/constants.sass'
 
     .header
         display: flex

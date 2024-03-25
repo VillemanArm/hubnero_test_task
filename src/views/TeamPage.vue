@@ -1,8 +1,8 @@
 <script>
-import TeamStatistic from '@/components/TeamStatistic'
-import TeamTable from '@/components/TeamTable'
+import TeamStatistic from '@/components/TeamPage/TeamStatistic'
+import TeamTable from '@/components/TeamPage/TeamTable'
 import ModalWindow from '@/components/UI/ModalWindow'
-import NewUserForm from '@/components/NewUserForm'
+import NewUserForm from '@/components/TeamPage/NewUserForm'
 
 export default  {
     components: { TeamStatistic, TeamTable, ModalWindow, NewUserForm },

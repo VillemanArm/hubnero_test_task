@@ -1,5 +1,5 @@
 <script>
-import NavLink from '@/components/NavLink'
+import NavLink from '@/components/NavPanel/NavLink'
 
 export default  {
     components: {NavLink},
@@ -50,7 +50,7 @@ export default  {
 </template>
 
 <style scoped lang='sass'>
-    @import '../assets/constants.sass'
+    @import '@/assets/constants.sass'
 
     .nav
         min-height: 100vh

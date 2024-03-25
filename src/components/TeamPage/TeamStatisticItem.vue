@@ -45,7 +45,7 @@ export default  {
 </template>
 
 <style scope lang='sass'>
-    @import '../assets/constants.sass'
+    @import '@/assets/constants.sass'
 
     .team_statistic__item
         padding: 0 36rem

@@ -1,6 +1,6 @@
 <script>
-import TeamTableItem from '@/components/TeamTableItem'
-import TeamTableIRow from '@/components/TeamTableIRow'
+import TeamTableItem from '@/components/TeamPage/TeamTableItem'
+import TeamTableIRow from '@/components/TeamPage/TeamTableIRow'
 
 export default  {
     components: { TeamTableItem, TeamTableIRow },
@@ -86,7 +86,7 @@ export default  {
 </template>
 
 <style lang='sass'>
-    @import '../assets/constants.sass'
+    @import '@/assets/constants.sass'
 
     .team-table
         width: 1788rem        

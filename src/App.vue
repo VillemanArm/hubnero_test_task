@@ -1,9 +1,9 @@
 <script>
-import NavPannel from "@/components/NavPannel.vue"
-import HeaderPannel from "@/components/HeaderPannel.vue"
+import NavPanel from "@/components/NavPanel/NavPanel.vue"
+import HeaderPanel from "@/components/HeaderPanel/HeaderPanel.vue"
 
   export default  {
-    components: {NavPannel, HeaderPannel},
+    components: {NavPanel, HeaderPanel},
       data() {
         return {
         }
@@ -16,12 +16,11 @@ import HeaderPannel from "@/components/HeaderPannel.vue"
 
 <template>
   <div id="app" class="app">
-    <NavPannel />
+    <NavPanel />
 
-    <HeaderPannel class="header"/>
+    <HeaderPanel class="header"/>
 
     <router-view class="router"/>
-
 
     </div>
 </template>

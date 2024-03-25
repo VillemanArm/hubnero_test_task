@@ -1,5 +1,5 @@
 <script>
-import TeamStatisticItem from '@/components/TeamStatisticItem'
+import TeamStatisticItem from '@/components/TeamPage/TeamStatisticItem'
 
 export default  {
     components: {TeamStatisticItem},
@@ -120,7 +120,7 @@ export default  {
 </template>
 
 <style scoped lang='sass'>
-    @import '../assets/constants.sass'
+    @import '@/assets/constants.sass'
 
     .team-statistic
         height: 79rem
