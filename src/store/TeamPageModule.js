@@ -101,6 +101,11 @@ export const TeamPageModule = {
 
             state.users.splice(replacedUserIndex, 1, editedUser)
         },
+        deleteUser(state, deletedUserId) {
+            const deletedUserIndex = state.users.findIndex(user => user.id === deletedUserId)
+
+            state.users.splice(deletedUserIndex, 1)
+        },
 
     },
     actions: {
