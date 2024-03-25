@@ -41,7 +41,7 @@ export default  {
 </script>
 
 <template>
-    <input ref="input" type="text" class='text-input' :placeholder="placeholder"
+    <input ref="input" type="text" class='text-input' :placeholder="placeholder" :value="value"
         @input="debounce(handleInput($refs.input.value.trim(), id), 500)" autocomplete="off" />
 
 </template>

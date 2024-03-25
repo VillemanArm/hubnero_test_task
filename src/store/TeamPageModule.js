@@ -6,6 +6,7 @@ export const TeamPageModule = {
         searchField: '',
         isAddUser: false,
         isEditUser: false,
+        editedUser: '',
         users: [
             {
                 id: 1,
@@ -56,7 +57,6 @@ export const TeamPageModule = {
 
     },
     getters: {
-
         sortedUsers(state) {
             if (state.isSortDescending) {
                 return [...state.users].sort((user1, user2) => user1[state.sortOption]?.localeCompare(user2[state.sortOption]))
@@ -68,10 +68,8 @@ export const TeamPageModule = {
             if (state.searchField && state.searchQuery) {
                 return getters.sortedUsers.filter(user => user[state.searchField].toLowerCase().includes(state.searchQuery))
             }
-            return getters.sortedUsers
-            
+            return getters.sortedUsers        
         },
-
     },
     mutations: {
         setIsSortDescending(state, bool) {
@@ -94,6 +92,14 @@ export const TeamPageModule = {
         },
         setIsEditUser(state, bool) {
             state.isEditUser = bool
+        },
+        setEditedUser(state, user) {
+            state.editedUser = user
+        },
+        replaceUser(state, editedUser) {
+            const replacedUserIndex = state.users.findIndex(user => user.id === editedUser.id)
+
+            state.users.splice(replacedUserIndex, 1, editedUser)
         },
 
     },

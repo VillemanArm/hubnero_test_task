@@ -3,12 +3,6 @@ import AutoInput from '@/components/UI/AutoInput.vue'
 
 export default  {
     components: { AutoInput },
-    props: {
-        // propsTemplate: {
-        //     type: Function,
-        //     required: true,
-        // },
-        },
     setup() {
         return { 
             nameRegExp: /^[A-Z][a-z]+\s[A-Z][a-z]+$/, 
@@ -21,44 +15,44 @@ export default  {
     data() {
         return {
             name: {
-                value: '',
+                value: this.$store.state.team.editedUser.name,
                 isError: false,
                 errorMessage: 'enter the name in the format: Name Surname'
             }, 
             team: {
-                value: '',
+                value: this.$store.state.team.editedUser.team,
                 isError: false,
                 errorMessage: 'enter the name in the format: Team name'
             }, 
             role: {
-                value: '',
+                value: this.$store.state.team.editedUser.role,
                 isError: false,
                 errorMessage: 'enter the name in the format: Role name'
             }, 
             gmail: {
-                value: '',
+                value: this.$store.state.team.editedUser.gmail,
                 isError: false,
                 errorMessage: 'enter the name in the format: example@gmail.com'
             }, 
             birthday: {
-                value: '',
+                value: this.$store.state.team.editedUser.birthday,
                 isError: false,
                 errorMessage: 'enter the name in the format: 01.01.2000'
             }, 
             telegram: {
-                value: '',
+                value: this.$store.state.team.editedUser.telegram,
                 isError: false,
                 errorMessage: 'enter the telegram nickname in the format: @example'
             }, 
             hireDate: {
-                value: '',
+                value: this.$store.state.team.editedUser.hireDate,
                 isError: false,
                 errorMessage: 'enter the name in the format: 01.01.2000'
             }, 
-            lastLogin: '',
-            isOnline: '',
-            gender: '',
-            avatar: 'https://insight-webstudio.ru/files_for_another_projects/no_avatar.png',
+            lastLogin: this.$store.state.team.editedUser.lastLogin,
+            isOnline: this.$store.state.team.editedUser.isOnline,
+            gender: this.$store.state.team.editedUser.gender,
+            avatar: this.$store.state.team.editedUser.avatar,
             isRequiredFieldsNotFilledIn: false,
         }
 
@@ -73,14 +67,13 @@ export default  {
     },
     methods: {
         handleSubmit(submit) {
-            //  не стал закрывать окно после добавления, чтобы было удобно заводить несколько сотрудников сразу
             submit.preventDefault()
 
             if (this.name.value && this.telegram.value && this.hireDate.value && this.birthday.value) {
                 this.isRequiredFieldsNotFilledIn = false
 
-                const newUser = {
-                    id: Date.now(),
+                const editedUser = {
+                    id: this.$store.state.team.editedUser.id,
                     name: this.name.value,
                     team: this.team.value,
                     role: this.role.value,
@@ -88,16 +81,16 @@ export default  {
                     birthday: this.birthday.value,
                     age: this.age,
                     telegram: this.telegram.value,
-                    lastLogin: '',
-                    isOnline: false,
+                    lastLogin: this.lastLogin,
+                    isOnline: this.isOnline,
                     gender: this.gender,
                     hireDate: this.hireDate.value,
-                    avatar: 'https://insight-webstudio.ru/files_for_another_projects/no_avatar.png',
+                    avatar: this.avatar,
                 }
 
-                this.$store.commit('team/addUser', newUser)
+                this.$store.commit('team/replaceUser', editedUser)
 
-                submit.target.reset()
+                this.$store.commit('team/setIsEditUser', false)
             } else {
                 this.isRequiredFieldsNotFilledIn = true
             }
@@ -114,105 +107,107 @@ export default  {
         },
 
         validateInput(regExp, variable) {
-
             return (value) => {
                 variable.isError = false
-                if (regExp.test(value)) {
+                if (regExp.test(value) || value === '') {
                     variable.value = value;
                 } else {
                     variable.isError = true
                 }
             }
-        }
-
-
+        },
+        
+    },
+    mounted() {
+        this.$refs.genderSelect.value = this.gender
     },
 }
 </script>
 
 <template>
-    <form class="employee-add" v-on:submit.prevent="(submit) => { handleSubmit(submit)}" @reset="handleReset()">
+    <form class="employee-edit" v-on:submit.prevent="(submit) => { handleSubmit(submit)}" @reset="handleReset()">
         <!-- если бы не понадобился select вывел бы строки через v-for -->
         <!-- нет добавления аватара, потому что некуда его отправлять -->
-        <div class="employee-add__row">
-            <label for="name" class="employee-add__label">Name*:</label>
+        <div class="employee-edit__row">
+            <label for="name" class="employee-edit__label">Name*:</label>
             <div>
-                <AutoInput name="name" class="employee-add__input" :placeholder="'Name Surname'"
-                    :handleInput="validateInput(nameRegExp, name)" />
-                <div v-if="name.isError" class="employee-add__error">{{ name.errorMessage }}</div>
+                <AutoInput name="name" class="employee-edit__input" :placeholder="'Name Surname'"
+                    :handleInput="validateInput(nameRegExp, name)" :value="name.value" />
+                <div v-if="name.isError" class="employee-edit__error">{{ name.errorMessage }}</div>
             </div>
         </div>
 
-        <div class=" employee-add__row">
-            <label for="team" class="employee-add__label">Team:</label>
+        <div class=" employee-edit__row">
+            <label for="team" class="employee-edit__label">Team:</label>
             <div>
-                <AutoInput name="team" class="employee-add__input" :placeholder="'Team name'"
-                    :handleInput="validateInput(phraseRegExp, team)" />
-                <div v-if="team.isError" class="employee-add__error">{{ team.errorMessage }}</div>
+                <AutoInput name="team" class="employee-edit__input" :placeholder="'Team name'"
+                    :handleInput="validateInput(phraseRegExp, team)" :value="team.value" />
+                <div v-if="team.isError" class="employee-edit__error">{{ team.errorMessage }}</div>
             </div>
         </div>
 
-        <div class="employee-add__row">
-            <label for="role" class="employee-add__label">Role:</label>
+        <div class="employee-edit__row">
+            <label for="role" class="employee-edit__label">Role:</label>
             <div>
-                <AutoInput name="role" class="employee-add__input" :placeholder="'Role name'"
-                    :handleInput="validateInput(phraseRegExp, role)" />
-                <div v-if="role.isError" class="employee-add__error">{{ role.errorMessage }}</div>
+                <AutoInput name="role" class="employee-edit__input" :placeholder="'Role name'"
+                    :handleInput="validateInput(phraseRegExp, role)" :value="role.value" />
+                <div v-if="role.isError" class="employee-edit__error">{{ role.errorMessage }}</div>
             </div>
         </div>
 
-        <div class="employee-add__row">
-            <label for="gmail" class="employee-add__label">Gmail:</label>
+        <div class="employee-edit__row">
+            <label for="gmail" class="employee-edit__label">Gmail:</label>
             <div>
-                <AutoInput name="gmail" class="employee-add__input" :placeholder="'example@gmail.com'"
-                    :handleInput="validateInput(gmailRegExp, gmail)" />
-                <div v-if="gmail.isError" class="employee-add__error">{{ gmail.errorMessage }}</div>
+                <AutoInput name="gmail" class="employee-edit__input" :placeholder="'example@gmail.com'"
+                    :handleInput="validateInput(gmailRegExp, gmail)" :value="gmail.value" />
+                <div v-if="gmail.isError" class="employee-edit__error">{{ gmail.errorMessage }}</div>
             </div>
         </div>
 
-        <div class="employee-add__row">
-            <label for="telegram" class="employee-add__label">Telegram*:</label>
+        <div class="employee-edit__row">
+            <label for="telegram" class="employee-edit__label">Telegram*:</label>
             <div>
-                <AutoInput name="telegram" class="employee-add__input" :placeholder="'@example'"
-                    :handleInput="validateInput(telegramRegExp, telegram)" />
-                <div v-if="telegram.isError" class="employee-add__error">{{ telegram.errorMessage }}</div>
+                <AutoInput name="telegram" class="employee-edit__input" :placeholder="'@example'"
+                    :handleInput="validateInput(telegramRegExp, telegram)" :value="telegram.value" />
+                <div v-if="telegram.isError" class="employee-edit__error">{{ telegram.errorMessage }}</div>
             </div>
         </div>
 
-        <div class="employee-add__row">
-            <label for="hireDate" class="employee-add__label">Hire date*:</label>
+        <div class="employee-edit__row">
+            <label for="hireDate" class="employee-edit__label">Hire date*:</label>
             <div>
-                <AutoInput name="hireDate" class="employee-add__input" :placeholder="'01.01.2000'"
-                    :handleInput="validateInput(dateRegExp, hireDate)" />
-                <div v-if="hireDate.isError" class="employee-add__error">{{ hireDate.errorMessage }}</div>
+                <AutoInput name="hireDate" class="employee-edit__input" :placeholder="'01.01.2000'"
+                    :handleInput="validateInput(dateRegExp, hireDate)" :value="hireDate.value" />
+                <div v-if="hireDate.isError" class="employee-edit__error">{{ hireDate.errorMessage }}</div>
             </div>
         </div>
 
-        <div class="employee-add__row">
-            <label for="birthday" class="employee-add__label">Birthday*:</label>
+        <div class="employee-edit__row">
+            <label for="birthday" class="employee-edit__label">Birthday*:</label>
             <div>
-                <AutoInput name="birthday" class="employee-add__input" :placeholder="'01.01.2000'"
-                    :handleInput="validateInput(dateRegExp, birthday)" />
-                <div v-if="birthday.isError" class="employee-add__error">{{ birthday.errorMessage }}</div>
+                <AutoInput name="birthday" class="employee-edit__input" :placeholder="'01.01.2000'"
+                    :handleInput="validateInput(dateRegExp, birthday)" :value="birthday.value" />
+                <div v-if="birthday.isError" class="employee-edit__error">{{ birthday.errorMessage }}</div>
             </div>
         </div>
 
-        <div class=" employee-add__row">
-            <label for="gender" class="employee-add__label">Gender:</label>
-            <select name="gender" class="employee-add__input" v-model="gender">
+        <div class=" employee-edit__row">
+            <label for="gender" class="employee-edit__label">Gender:</label>
+            <select ref="genderSelect" name="gender" class="employee-edit__input" v-model="gender">
                 <option value='' selected></option>
                 <option value="male">male</option>
                 <option value="female">female</option>
             </select>
         </div>
 
-        <div class="employee-add__error-wrapper">
-            <div class="employee-add__error" v-if="isRequiredFieldsNotFilledIn">Fill in the required fields (marked with
+        <div class="employee-edit__error-wrapper">
+            <div class="employee-edit__error" v-if="isRequiredFieldsNotFilledIn">Fill in the required fields (marked
+                with
                 an asterisk)</div>
         </div>
 
-        <div class="employee-add__buttons">
-            <button type="submit" class="button modal__button">Add</button>
+        <div class="employee-edit__buttons">
+            <button type="submit" class="button modal__button">Save changes</button>
             <button type="reset" class="button modal__button">Clear</button>
         </div>
 
@@ -223,7 +218,7 @@ export default  {
 <style scoped lang='sass'>
     @import '@/assets/constants.sass'
 
-    .employee-add__row
+    .employee-edit__row
         display: grid
         grid-template-columns: 130rem 1fr
         min-height: 44rem
@@ -231,12 +226,12 @@ export default  {
 
         font-size: 14rem
 
-    .employee-add__label
+    .employee-edit__label
         margin-top: 8rem
 
         font-weight: 500
 
-    .employee-add__input
+    .employee-edit__input
         width: 100%
         height: 28rem
         padding: 0 6rem
@@ -247,19 +242,19 @@ export default  {
         border-radius: 6rem
         outline-color: $accent-color
 
-    .employee-add__error
+    .employee-edit__error
         margin-left: 6rem
 
         font-size: 12rem
 
         color: $red
 
-    .employee-add__error-wrapper
+    .employee-edit__error-wrapper
         min-height: 18rem
         display: flex
         justify-content: end
 
-    .employee-add__buttons
+    .employee-edit__buttons
         display: flex
         justify-content: end
         gap: 12rem

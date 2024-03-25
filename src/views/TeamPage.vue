@@ -25,6 +25,7 @@ export default  {
         closeEditUser() {
             return this.$store.commit('team/setIsEditUser', false)
         },
+
     },
     mounted() {
 
@@ -47,11 +48,11 @@ export default  {
             <span>Add new Employee</span>
         </button>
 
-        <ModalWindow v-if="$store.state.team.isAddUser" :header="'Add User'" :close="closeNewUser">
+        <ModalWindow v-if="$store.state.team.isAddUser" :header="'Add employee'" :close="closeNewUser">
             <NewUserForm />
         </ModalWindow>
 
-        <ModalWindow v-if="$store.state.team.isEditUser" :header="'Edit User'" :close="closeEditUser">
+        <ModalWindow v-if="$store.state.team.isEditUser" :header="'Edit employee'" :close="closeEditUser">
             <EditUserForm />
         </ModalWindow>
 
