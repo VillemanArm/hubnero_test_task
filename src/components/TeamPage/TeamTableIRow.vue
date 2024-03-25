@@ -60,7 +60,7 @@ export default  {
             </div>
         </div>
         <div class="table-row__item">
-            <div class="table-row__edit">
+            <div class="table-row__edit" @click="$store.commit('team/setIsEditUser', true)">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#8591AE"
                     xmlns="http://www.w3.org/2000/svg">
                     <path d="M11.6932 6.74667L9.25317 4.30667" stroke="evenodd" stroke-linecap="round"

@@ -3,9 +3,10 @@ import TeamStatistic from '@/components/TeamPage/TeamStatistic'
 import TeamTable from '@/components/TeamPage/TeamTable'
 import ModalWindow from '@/components/UI/ModalWindow'
 import NewUserForm from '@/components/TeamPage/NewUserForm'
+import EditUserForm from '@/components/TeamPage/EditUserForm'
 
 export default  {
-    components: { TeamStatistic, TeamTable, ModalWindow, NewUserForm },
+    components: { TeamStatistic, TeamTable, ModalWindow, NewUserForm, EditUserForm },
     props: {
         // link: {
         //     type: Object,
@@ -18,9 +19,12 @@ export default  {
         }
     },
     methods: {
-        setAddUser(bool) {
-            this.isAddUser = bool
-        }
+        closeNewUser() {
+            return this.$store.commit('team/setIsAddUser', false)
+        },
+        closeEditUser() {
+            return this.$store.commit('team/setIsEditUser', false)
+        },
     },
     mounted() {
 
@@ -32,7 +36,7 @@ export default  {
     <div class="team">
         <TeamStatistic />
 
-        <button class="team__add" type="button" @click="setAddUser(true)">
+        <button class="team__add" type="button" @click="$store.commit('team/setIsAddUser', true)">
             <div class="team__add-icon">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#8591AE"
                     xmlns="http://www.w3.org/2000/svg">
@@ -43,8 +47,12 @@ export default  {
             <span>Add new Employee</span>
         </button>
 
-        <ModalWindow v-if="isAddUser" :header="'Add User'" :close="setAddUser">
+        <ModalWindow v-if="$store.state.team.isAddUser" :header="'Add User'" :close="closeNewUser">
             <NewUserForm />
+        </ModalWindow>
+
+        <ModalWindow v-if="$store.state.team.isEditUser" :header="'Edit User'" :close="closeEditUser">
+            <EditUserForm />
         </ModalWindow>
 
         <TeamTable />

@@ -31,7 +31,7 @@ export default {
             <div class="modal__head">
                 <h2>{{ header }}</h2>
                 <div class="modal__close" @click="close(false)">
-                    <X :size="32" />
+                    <X width="100%" height="100%" />
                 </div>
             </div>
             <div class="modal__content">
@@ -72,6 +72,12 @@ export default {
     .modal__close
         float: right
         cursor: pointer
+        width: 32rem
+        height: 32rem
+
+            // &>svg
+            //     width: 32rem !important
+            //     height: 32rem !important
 
     h2
         display: inline-block

@@ -4,6 +4,8 @@ export const TeamPageModule = {
         sortOption: '',
         searchQuery: '',
         searchField: '',
+        isAddUser: false,
+        isEditUser: false,
         users: [
             {
                 id: 1,
@@ -86,6 +88,12 @@ export const TeamPageModule = {
         },
         addUser(state, newUser) {
             state.users.push(newUser)
+        },
+        setIsAddUser(state, bool) {
+            state.isAddUser = bool
+        },
+        setIsEditUser(state, bool) {
+            state.isEditUser = bool
         },
 
     },
