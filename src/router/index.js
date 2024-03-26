@@ -1,7 +1,14 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import TeamPage from '../views/TeamPage.vue'
-import ToolsPage from '../views/ToolsPage.vue'
+import TeamPage from '@/views/TeamPage.vue'
+import ToolsPage from '@/views/ToolsPage.vue'
+import StatisticsPage from '@/views/StatisticsPage.vue'
+import MoneyPage from '@/views/MoneyPage.vue'
+import LinksPage from '@/views/LinksPage.vue'
+import PagePage from '@/views/PagePage.vue'
+import LeadsPage from '@/views/LeadsPage.vue'
+import SettingsPage from '@/views/SettingsPage.vue'
+import BusinessPage from '@/views/BusinessPage.vue'
 
 Vue.use(VueRouter)
 
@@ -24,37 +31,37 @@ const routes = [
   {
     path: '/statistics',
     name: 'statistics',
-    //component: StatisticsPage
+    component: StatisticsPage
   },
   {
     path: '/money',
     name: 'money',
-    //component: MoneyPage
+    component: MoneyPage
   },
   {
     path: '/links',
     name: 'links',
-    //component: ToolsPage
+    component: LinksPage
   },
   {
     path: '/page',
     name: 'page',
-    //component: ToolsPage
+    component: PagePage
   },
   {
     path: '/leads',
     name: 'leads',
-    //component: ToolsPage
+    component: LeadsPage
   },
   {
     path: '/settings',
     name: 'settings',
-    //component: ToolsPage
+    component: SettingsPage
   },
   {
     path: '/business',
     name: 'business',
-    //component: ToolsPage
+    component: BusinessPage
   },
 ]
 
