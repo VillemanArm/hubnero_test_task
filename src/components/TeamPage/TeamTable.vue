@@ -1,9 +1,10 @@
 <script>
 import TeamTableItem from '@/components/TeamPage/TeamTableItem'
-import TeamTableIRow from '@/components/TeamPage/TeamTableIRow'
+import TeamTableRow from '@/components/TeamPage/TeamTableRow'
+import TeamTableNav from '@/components/TeamPage/TeamTableNav'
 
 export default  {
-    components: { TeamTableItem, TeamTableIRow },
+    components: { TeamTableItem, TeamTableRow, TeamTableNav },
     props: {
         // propsTemplate: {
         //     type: Function,
@@ -64,6 +65,14 @@ export default  {
             ]
         }
     },
+    computed: {
+        firstItemIndex() {
+            return this.$store.state.team.usersByPage * (this.$store.state.team.currentPage - 1)     
+        },
+        lastItemIndex() {
+            return this.firstItemIndex + this.$store.state.team.usersByPage     
+        },
+    },
     methods: {
 
     },
@@ -71,31 +80,39 @@ export default  {
 </script>
 
 <template>
-    <div class="team-table">
-        <div class="team-table__list">
-            <div class="team-table__head row">
-                <TeamTableItem v-for="item in tableColumns" :key="item.name" :item="item" />
+    <div class="team-table__wrap">
+        <div class="team-table">
+            <div class="team-table__list">
+                <div class="team-table__head row">
+                    <TeamTableItem v-for="item in tableColumns" :key="item.name" :item="item" />
+                </div>
+                <TeamTableRow
+                    v-for="user in $store.getters['team/sortedAndSearchedUsers'].slice(firstItemIndex, lastItemIndex)"
+                    :key="user.id" :user="user" />
+
             </div>
-            <TeamTableIRow v-for="user in $store.getters['team/sortedAndSearchedUsers']" :key="user.id" :user="user"/>
-            
+
         </div>
-        <div class="team-table__nav">
-        </div>
+
+        <TeamTableNav />
+       
     </div>
+
 
 </template>
 
 <style lang='sass'>
     @import '@/assets/constants.sass'
 
+    .team-table__wrap > div
+        width: 1788rem  
+        padding: 16rem     
+
+        background-color: $block-background-color
+        border-radius: 12rem
+
     .team-table
-        width: 1788rem        
-
-        &>div
-            padding: 16rem
-
-            background-color: $block-background-color
-            border-radius: 12rem
+        margin-bottom: 28rem  
 
     .team-table__head
         background-color: $background-color
@@ -104,10 +121,7 @@ export default  {
     .row
         display: grid
         grid-template-columns: repeat(8, 1fr)
-    // .team-table__list
-
-    // .team-table__nav
-
-
+    
+    
 
 </style>
