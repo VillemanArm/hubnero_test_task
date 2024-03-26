@@ -9,11 +9,6 @@ export default  {
             required: true,
         },
         },
-    data() {
-        return {
-        
-        }
-    },
     methods: {
         sortDescending() {
             this.$store.commit('team/setSortOption', this.item.sortOption)
@@ -23,7 +18,6 @@ export default  {
             this.$store.commit('team/setSortOption', this.item.sortOption)
             this.$store.commit('team/setIsSortDescending', false)
         },
-
     },
 }
 </script>

@@ -3,13 +3,6 @@ import TeamStatisticItem from '@/components/TeamPage/TeamStatisticItem'
 
 export default  {
     components: {TeamStatisticItem},
-    props: {
-        },
-    data() {
-        return {
-        
-        }
-    },
     methods: {
         sumParams(objectsArr, key) {
             let sum = 0
@@ -28,10 +21,7 @@ export default  {
             const workDays = Math.ceil(workMs / (1000 * 60 * 60 * 24));
 
             return workDays
-        }
-
-        
-
+        },
     },
     computed: {
         statistics() {

@@ -3,12 +3,6 @@ import AutoInput from '@/components/UI/AutoInput.vue'
 
 export default  {
     components: { AutoInput },
-    props: {
-        // propsTemplate: {
-        //     type: Function,
-        //     required: true,
-        // },
-        },
     setup() {
         return { 
             nameRegExp: /^[A-Z][a-z]+\s[A-Z][a-z]+$/, 
@@ -124,8 +118,6 @@ export default  {
                 }
             }
         }
-
-
     },
 }
 </script>
@@ -263,8 +255,5 @@ export default  {
         display: flex
         justify-content: end
         gap: 12rem
-
-
-    
 
 </style>

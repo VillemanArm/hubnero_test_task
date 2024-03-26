@@ -5,12 +5,6 @@ import TeamTableNav from '@/components/TeamPage/TeamTableNav'
 
 export default  {
     components: { TeamTableItem, TeamTableRow, TeamTableNav },
-    props: {
-        // propsTemplate: {
-        //     type: Function,
-        //     required: true,
-        // },
-        },
     data() {
         return {
             tableColumns: [
@@ -73,32 +67,22 @@ export default  {
             return this.firstItemIndex + this.$store.state.team.usersByPage     
         },
     },
-    methods: {
-
-    },
 }
 </script>
 
 <template>
     <div class="team-table__wrap">
         <div class="team-table">
-            <div class="team-table__list">
-                <div class="team-table__head row">
-                    <TeamTableItem v-for="item in tableColumns" :key="item.name" :item="item" />
-                </div>
-                <TeamTableRow
-                    v-for="user in $store.getters['team/sortedAndSearchedUsers'].slice(firstItemIndex, lastItemIndex)"
-                    :key="user.id" :user="user" />
-
+            <div class="team-table__head row">
+                <TeamTableItem v-for="item in tableColumns" :key="item.name" :item="item" />
             </div>
-
+            <TeamTableRow
+                v-for="user in $store.getters['team/sortedAndSearchedUsers'].slice(firstItemIndex, lastItemIndex)"
+                :key="user.id" :user="user" />
         </div>
 
-        <TeamTableNav />
-       
+        <TeamTableNav />    
     </div>
-
-
 </template>
 
 <style lang='sass'>
@@ -122,6 +106,4 @@ export default  {
         display: grid
         grid-template-columns: repeat(8, 1fr)
     
-    
-
 </style>

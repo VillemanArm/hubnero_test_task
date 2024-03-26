@@ -1,23 +1,5 @@
 <script>
 
-export default  {
-    components: {},
-    props: {
-        // propsTemplate: {
-        //     type: Function,
-        //     required: true,
-        // },
-        },
-    data() {
-        return {
-        
-        }
-    },
-    methods: {
-
-    },
-    //$route.path
-}
 </script>
 
 <template>
@@ -62,10 +44,7 @@ export default  {
                         <path d="M0.952393 1.33334L4.28573 4.66668L7.61906 1.33334" stroke="evenodd" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </div>
-
-            </div>
-
-        
+            </div>        
         </div>
     </header>
 
@@ -85,8 +64,6 @@ export default  {
         & svg
             cursor: pointer
 
-
-
     .header__block
         display: flex
         align-items: center
@@ -95,7 +72,6 @@ export default  {
     .header__menu svg:hover
         fill: $accent-color
                 
-
     .header__title h1
         margin: 0
 
@@ -163,7 +139,5 @@ export default  {
 
         background-color: $background-color
         border-radius: 6rem
-
-        
 
 </style>

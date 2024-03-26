@@ -1,30 +1,18 @@
 <script>
 
 export default  {
-    components: {},
     props: {
         item: {
             type: Object,
             required: true,
         },
-        },
-    data() {
-        return {
-        
-        }
-    },
-    methods: {
-
-    },
-    mounted() {
-        
     },
 }
 </script>
 
 <template>
     <div 
-        v-bind:class="{
+        :class="{
             team_statistic__item: true,
             right_border: item.line
         }"
@@ -36,10 +24,7 @@ export default  {
             {{ item.title }}
         </div>
         <div v-if="item.point" class="team-statistic__item-point">
-
-        </div>
-
-        
+        </div>      
     </div>
 
 </template>
@@ -74,7 +59,5 @@ export default  {
 
         border-radius: 50%
         background-color: $green
-
-
 
 </style>

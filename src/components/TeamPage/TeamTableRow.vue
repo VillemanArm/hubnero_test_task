@@ -7,27 +7,23 @@ export default  {
             type: Object,
             required: true,
         },
-        },
-    data() {
-        return {
-        
-        }
     },
     methods: {
         handleEditUser() {
             this.$store.commit('team/setIsEditUser', true)
             this.$store.commit('team/setEditedUser', this.user)
         },
+
         handleDeleteUser() {
             this.$store.commit('team/deleteUser', this.user.id)
         },
-
     },
 }
 </script>
 
 <template>
     <div class="table-row row">
+        <!-- условную отрисовку не сделал из-за уникальных первой и последней ячейки, можно сделать для ячеек в середине -->
         <div class="table-row__item">
             <div class="table-row__item-avatar">
                 <img :src="user.avatar" alt="">
@@ -86,7 +82,6 @@ export default  {
                 </svg>
             </div>
         </div>
-
     </div>
 
 </template>
@@ -140,6 +135,5 @@ export default  {
 
         &:hover
             stroke: $accent-color
-
 
 </style>

@@ -3,20 +3,6 @@ import NavLink from '@/components/NavPanel/NavLink'
 
 export default  {
     components: {NavLink},
-    props: {
-        // propsTemplate: {
-        //     type: Function,
-        //     required: true,
-        // },
-        },
-    data() {
-        return {
-        
-        }
-    },
-    methods: {
-
-    },
 }
 </script>
 
@@ -96,6 +82,5 @@ export default  {
 
             & svg
                 stroke: $block-background-color
-
 
 </style>

@@ -259,7 +259,4 @@ export default  {
         justify-content: end
         gap: 12rem
 
-
-    
-
 </style>

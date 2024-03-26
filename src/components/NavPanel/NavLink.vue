@@ -1,24 +1,13 @@
 <script>
 
 export default  {
-    components: {},
     props: {
         link: {
             type: Object,
             required: true,
         },
-        },
-    data() {
-        return {
-        
-        }
     },
-    methods: {
 
-    },
-    mounted() {
-        
-    },
 }
 </script>
 
