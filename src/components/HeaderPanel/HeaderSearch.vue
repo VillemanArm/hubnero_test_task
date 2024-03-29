@@ -13,23 +13,7 @@ export default {
 
         },
         toggleSearch() {
-            // const searchInput = this.$refs.searchInput.$el
-
             this.$store.commit('header/setIsSearch', !this.$store.state.header.isSearch)
-
-            // void searchInput.offsetWidth;
-
-            // if (this.$store.state.header.isSearch) {
-            //     // void searchInput.offsetWidth;
-            //     // searchInput.classList.add('header-search__input_active')
-            //     searchInput.style.cssText = `display: inline-block; width: 300rem`
-            // } else {
-            //     // void searchInput.offsetWidth;
-            //     //searchInput.classList.toggle('header-search__input_nonactive')
-            //     searchInput.style.cssText = `display: none; width: 0`
-            // }
-
-
         }
     }
 }
@@ -49,11 +33,8 @@ export default {
                     stroke-linejoin="round" />
             </svg>
         </div>
-        <!-- v-show="$store.state.header.isSearch" -->
-        <!-- ref="searchInput" -->
         <transition name="header-search">
-            <AutoInput v-if="$store.state.header.isSearch" class="header-search__input" ref=" searchInput"
-                :handleInput="handleSearch" />
+            <AutoInput v-if="$store.state.header.isSearch" class="header-search__input" :handleInput="handleSearch" />
         </transition>
 
     </div>
@@ -96,23 +77,13 @@ export default {
     .header-search-leave-active
         animation: openSearch 0.6s reverse
 
-        
-
     @keyframes openSearch 
         from 
             padding: 0 
             width: 0
-            display: none
-        
-        1%
-            display: block
 
         to 
             padding: 0 6rem
             width: 300rem
-            display: block
 	
-
-
-
 </style>
