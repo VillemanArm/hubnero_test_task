@@ -1,4 +1,4 @@
-export const HeaderPannelModule = {
+export const HeaderPanelModule = {
     state: {
         user: {
             name: 'Ernest',
@@ -7,12 +7,15 @@ export const HeaderPannelModule = {
             role: 'HR'
         },
         isUnreadNotification: true,
+        isSearch: false,
     },
     getters: {
 
     },
     mutations: {
-
+        setIsSearch(state, bool) {
+            state.isSearch = bool
+        }
     },
     actions: {
 

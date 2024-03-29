@@ -1,4 +1,4 @@
-export const NavPannelModule = {
+export const NavPanelModule = {
     state: {
         links: [
             {

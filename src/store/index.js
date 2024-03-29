@@ -1,6 +1,6 @@
 // import { createStore } from 'vuex'
-import { NavPannelModule } from '@/store/NavPannelModule'
-import { HeaderPannelModule } from '@/store/HeaderPannelModule'
+import { NavPanelModule } from '@/store/NavPanelModule'
+import { HeaderPanelModule } from '@/store/HeaderPanelModule'
 import { TeamPageModule } from '@/store/TeamPageModule'
 
 import Vue from 'vue'
@@ -10,13 +10,13 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-        
+
     },
     getters: {
     },
     modules: {
-        nav: NavPannelModule,
-        header: HeaderPannelModule,
+        nav: NavPanelModule,
+        header: HeaderPanelModule,
         team: TeamPageModule,
     },
 })
