@@ -1,6 +1,6 @@
 <script>
 
-export default  {
+export default {
     components: {},
     props: {
         handleInput: {
@@ -22,7 +22,7 @@ export default  {
     },
     data() {
         return {
-        
+
         }
     },
     methods: {
@@ -37,7 +37,7 @@ export default  {
         },
     },
 }
-//@input="debounce((event) => {handleInput(event.target.value, id)}, 500)"
+
 </script>
 
 <template>
@@ -60,4 +60,3 @@ export default  {
         outline-color: $accent-color
 
 </style>
-

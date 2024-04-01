@@ -3,11 +3,6 @@ import AutoInput from '@/components/UI/AutoInput.vue'
 
 export default {
     components: { AutoInput },
-    data() {
-        return {
-
-        }
-    },
     methods: {
         handleSearch() {
 

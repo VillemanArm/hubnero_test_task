@@ -1,8 +1,9 @@
 <script>
 import HeaderSearch from '@/components/HeaderPanel/HeaderSearch'
+import HeaderMenu from '@/components/HeaderPanel/HeaderMenu'
 
 export default {
-    components: { HeaderSearch },
+    components: { HeaderSearch, HeaderMenu },
 }
 
 </script>
@@ -10,13 +11,7 @@ export default {
 <template>
     <header class="header">
         <div class="header__block">
-            <div class="header__menu">
-                <svg width="16" height="12" viewBox="0 0 16 12" fill="#2A355A" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="0.000999451" y="0.5" width="16" height="1" rx="0.5" fill="evenodd" />
-                    <rect x="0.000999451" y="5.5" width="16" height="1" rx="0.5" fill="evenodd" />
-                    <rect x="0.000999451" y="10.5" width="16" height="1" rx="0.5" fill="evenodd" />
-                </svg>
-            </div>
+            <HeaderMenu />
             <div class="header__title">
                 <h1>{{ $route.name[0].toUpperCase() + $route.name.slice(1) }}</h1>
             </div>
@@ -77,9 +72,6 @@ export default {
         display: flex
         align-items: center
         gap: 28rem
-
-    .header__menu svg:hover
-        fill: $accent-color
                 
     .header__title h1
         margin: 0

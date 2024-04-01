@@ -8,6 +8,7 @@ export const HeaderPanelModule = {
         },
         isUnreadNotification: true,
         isSearch: false,
+        isMenu: false,
     },
     getters: {
 
@@ -15,6 +16,9 @@ export const HeaderPanelModule = {
     mutations: {
         setIsSearch(state, bool) {
             state.isSearch = bool
+        },
+        setIsMenu(state, bool) {
+            state.isMenu = bool
         }
     },
     actions: {
