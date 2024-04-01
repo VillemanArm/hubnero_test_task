@@ -1,8 +1,8 @@
 <script>
-// import OpeningMenu from '@/components/UI/OpeningMenu'
+import DropList from '@/components/UI/DropList'
 
 export default {
-    // components: { OpeningMenu },
+    components: { DropList },
     data() {
         return {
 
@@ -30,7 +30,7 @@ export default {
                 <rect x="0.000999451" y="10.5" width="16" height="1" rx="0.5" fill="evenodd" />
             </svg>
         </div>
-        <!-- <OpeningMenu :openingCondition="this.$store.state.header.isMenu">
+        <DropList :openingCondition="$store.state.header.isMenu">
             <ul class="header-menu__list">
                 <li>
                     <a href="">menu 1st lvl</a>
@@ -39,33 +39,38 @@ export default {
                         <li><a href="">menu 2nd lvl</a></li>
                         <li><a href="">menu 2nd lvl</a></li>
                     </ul>
-
                 </li>
-                <li><a href="">menu 1st lvl</a></li>
-                <li><a href="">menu 1st lvl</a></li>
-                <li><a href="">menu 1st lvl</a></li>
-                <li><a href="">menu 1st lvl</a></li>
-            </ul>
-
-        </OpeningMenu> -->
-        <Transition name="opening-menu">
-            <ul v-if="$store.state.header.isMenu" class=" header-menu__list">
-                <li>
-                    <a href="">menu 1st lvl</a>
+                <li><a href="">menu 1st lvl</a>
                     <ul>
                         <li><a href="">menu 2nd lvl</a></li>
                         <li><a href="">menu 2nd lvl</a></li>
                         <li><a href="">menu 2nd lvl</a></li>
                     </ul>
-
                 </li>
-                <li><a href="">menu 1st lvl</a></li>
-                <li><a href="">menu 1st lvl</a></li>
-                <li><a href="">menu 1st lvl</a></li>
-                <li><a href="">menu 1st lvl</a></li>
+                <li><a href="">menu 1st lvl</a>
+                    <ul>
+                        <li><a href="">menu 2nd lvl</a></li>
+                        <li><a href="">menu 2nd lvl</a></li>
+                        <li><a href="">menu 2nd lvl</a></li>
+                    </ul>
+                </li>
+                <li><a href="">menu 1st lvl</a>
+                    <ul>
+                        <li><a href="">menu 2nd lvl</a></li>
+                        <li><a href="">menu 2nd lvl</a></li>
+                        <li><a href="">menu 2nd lvl</a></li>
+                    </ul>
+                </li>
+                <li><a href="">menu 1st lvl</a>
+                    <ul>
+                        <li><a href="">menu 2nd lvl</a></li>
+                        <li><a href="">menu 2nd lvl</a></li>
+                        <li><a href="">menu 2nd lvl</a></li>
+                    </ul>
+                </li>
             </ul>
+        </DropList>
 
-        </Transition>
     </div>
 
 
@@ -79,22 +84,6 @@ export default {
     .header-menu__button svg:hover
         fill: $accent-color
         cursor: pointer
-
-    .header-menu__list
-        position: absolute
-        list-style-type: none
-        transform-origin: 0 0
-
-        & ul
-            list-style-type: none
-
-        & li
-            position: relative
-
-            & ul
-                position: absolute
-                left: 100%
-                top: 0
 
     .header-menu__list
         margin-top: 10rem
@@ -111,26 +100,21 @@ export default {
         & li
             min-width: 110rem
             padding: 10rem 14rem
+            position: relative
 
             background-color: $block-background-color
-            
 
-    .opening-menu-enter-active
-        animation: openMenu 1s
+            &:hover > ul
+                transform: rotateX(0deg)
 
-    .opening-menu-leave-active
-        animation: openMenu 1s reverse
+            & ul
+                position: absolute
+                left: 100%
+                top: 0
+                transform: rotateX(-90deg)
 
-    @keyframes openMenu 
-        from 
-            transform: rotateX(-90deg)
-            
-
-        to 
-            transform: rotateX(0deg)
-
-    
-
-
+                list-style-type: none 
+                transition: transform 0.5s linear
+                transform-origin: 0 0
 	
 </style>
