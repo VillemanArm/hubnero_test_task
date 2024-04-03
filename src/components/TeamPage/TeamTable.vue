@@ -3,7 +3,7 @@ import TeamTableItem from '@/components/TeamPage/TeamTableItem'
 import TeamTableRow from '@/components/TeamPage/TeamTableRow'
 import TeamTableNav from '@/components/TeamPage/TeamTableNav'
 
-export default  {
+export default {
     components: { TeamTableItem, TeamTableRow, TeamTableNav },
     data() {
         return {
@@ -54,17 +54,17 @@ export default  {
                     name: "User permissions",
                     isSortable: false,
                     isSearchable: false,
-                    
+
                 },
             ]
         }
     },
     computed: {
         firstItemIndex() {
-            return this.$store.state.team.usersByPage * (this.$store.state.team.currentPage - 1)     
+            return this.$store.state.team.usersByPage * (this.$store.state.team.currentPage - 1)
         },
         lastItemIndex() {
-            return this.firstItemIndex + this.$store.state.team.usersByPage     
+            return this.firstItemIndex + this.$store.state.team.usersByPage
         },
     },
 }
@@ -81,7 +81,7 @@ export default  {
                 :key="user.id" :user="user" />
         </div>
 
-        <TeamTableNav />    
+        <TeamTableNav />
     </div>
 </template>
 
@@ -89,7 +89,7 @@ export default  {
     @import '@/assets/constants.sass'
 
     .team-table__wrap > div
-        width: 1788rem  
+        width: 100% 
         padding: 16rem     
 
         background-color: $block-background-color

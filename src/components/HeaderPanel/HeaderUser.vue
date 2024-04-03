@@ -9,8 +9,6 @@ export default {
         }
     }
 }
-
-
 </script>
 
 <template>
@@ -45,8 +43,6 @@ export default {
             </DropList>
         </div>
     </div>
-
-
 </template>
 
 <style lang='sass'>
@@ -115,7 +111,5 @@ export default {
             padding: 10rem 14rem
             position: relative
 
-            background-color: $block-background-color
-
-	
+            background-color: $block-background-color	
 </style>
