@@ -95,7 +95,7 @@ export default {
 
     .header__user-menu-list
         right: 22rem
-        padding-top: 22rem
+        padding-top: 24rem
 
         font-size: 14rem
 
