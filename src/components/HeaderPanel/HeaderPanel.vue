@@ -1,9 +1,10 @@
 <script>
 import HeaderSearch from '@/components/HeaderPanel/HeaderSearch'
 import HeaderMenu from '@/components/HeaderPanel/HeaderMenu'
+import HeaderUser from '@/components/HeaderPanel/HeaderUser'
 
 export default {
-    components: { HeaderSearch, HeaderMenu },
+    components: { HeaderSearch, HeaderMenu, HeaderUser },
 }
 
 </script>
@@ -32,23 +33,9 @@ export default {
                         stroke="evenodd" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
 
-                <div v-if="$store.state.header.isUnreadNotification" class="header__notifications-allert"></div>
+                <div v-if="$store.state.header.isUnreadNotification" class="header__notifications-alert"></div>
             </div>
-            <div class="header__user">
-                <div class="header__user-avatar">
-                    <img :src="$store.state.header.user.avatar" alt="avatar">
-                </div>
-                <div class="header__user-name">
-                    {{ $store.state.header.user.name }} {{ $store.state.header.user.lastName }}
-                </div>
-                <div class="header__user-button">
-                    <svg width="9" height="6" viewBox="0 0 9 6" fill="none" stroke="#8591AE"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path d="M0.952393 1.33334L4.28573 4.66668L7.61906 1.33334" stroke="evenodd"
-                            stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                </div>
-            </div>
+            <HeaderUser />
         </div>
     </header>
 
@@ -90,7 +77,7 @@ export default {
     .header__notifications
         position: relative
 
-    .header__notifications-allert
+    .header__notifications-alert
         width: 12rem
         height: 12rem
         position: absolute
@@ -102,43 +89,5 @@ export default {
         border-radius: 50%
         border: 2px solid $block-background-color
 
-    .header__user
-        padding-left: 28rem
-        display: flex
-        align-items: center
-        gap: 12rem
-
-        border-left: 2px solid $light-grey
-        cursor: pointer
-
-        &:hover
-            color: $accent-color
-
-            & .header__user-button
-                background-color: $accent-color
-
-                & svg
-                    stroke: $block-background-color
-
-
-    .header__user-avatar
-        width: 32rem
-        height: 32rem
-
-        & img
-            border-radius: 8rem
-
-    .header__user-name
-        font-weight: 500
-
-    .header__user-button
-        width: 20rem
-        height: 20rem
-        display: flex
-        align-items: center
-        justify-content: center
-
-        background-color: $background-color
-        border-radius: 6rem
 
 </style>

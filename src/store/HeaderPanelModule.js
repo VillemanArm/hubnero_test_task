@@ -9,6 +9,7 @@ export const HeaderPanelModule = {
         isUnreadNotification: true,
         isSearch: false,
         isMenu: false,
+        isUserMenu: false,
     },
     getters: {
 
@@ -19,7 +20,10 @@ export const HeaderPanelModule = {
         },
         setIsMenu(state, bool) {
             state.isMenu = bool
-        }
+        },
+        setIsUserMenu(state, bool) {
+            state.isUserMenu = bool
+        },
     },
     actions: {
 
