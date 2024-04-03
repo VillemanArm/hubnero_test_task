@@ -3,15 +3,7 @@ import DropList from '@/components/UI/DropList'
 
 export default {
     components: { DropList },
-    data() {
-        return {
-
-        }
-    },
     methods: {
-        handleSearch() {
-
-        },
         toggleMenu() {
             this.$store.commit('header/setIsMenu', !this.$store.state.header.isMenu)
         }
@@ -23,7 +15,10 @@ export default {
 
 <template>
     <div class="header-menu">
-        <div class="header-menu__button" @click="toggleMenu()">
+        <div :class="{
+            'header-menu__button': true,
+            'header-menu__button_active': $store.state.header.isMenu,
+        }" @click="toggleMenu()">
             <svg width="16" height="12" viewBox="0 0 16 12" fill="#2A355A" xmlns="http://www.w3.org/2000/svg">
                 <rect x="0.000999451" y="0.5" width="16" height="1" rx="0.5" fill="evenodd" />
                 <rect x="0.000999451" y="5.5" width="16" height="1" rx="0.5" fill="evenodd" />
@@ -81,13 +76,22 @@ export default {
     .header-menu
         position: relative
 
-    .header-menu__button svg:hover
-        fill: $accent-color
-        cursor: pointer
+    .header-menu__button 
+        padding: 8rem
+
+        border-top-radius: 8rem
+        
+        & svg:hover
+            fill: $accent-color
+            cursor: pointer
+
+    .header-menu__button_active 
+        background-color: $block-background-color
+        
+        & svg
+            fill: $accent-color    
 
     .header-menu__list
-        margin-top: 10rem
-
         font-size: 14rem
 
         & > li:not(:last-child)           
