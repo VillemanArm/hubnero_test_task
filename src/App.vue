@@ -2,15 +2,8 @@
 import NavPanel from "@/components/NavPanel/NavPanel.vue"
 import HeaderPanel from "@/components/HeaderPanel/HeaderPanel.vue"
 
-  export default  {
-    components: {NavPanel, HeaderPanel},
-      data() {
-        return {
-        }
-      },
-    // mounted() {
-    //     this.$router.push('/works/blog_vue/')
-    // }
+export default {
+  components: { NavPanel, HeaderPanel },
 }
 </script>
 
@@ -18,44 +11,42 @@ import HeaderPanel from "@/components/HeaderPanel/HeaderPanel.vue"
   <div id="app" class="app">
     <NavPanel />
 
-    <HeaderPanel class="header"/>
+    <HeaderPanel class="header" />
 
-    <router-view class="router"/>
+    <router-view class="router" />
 
-    </div>
+  </div>
 </template>
 
 <style lang='scss'>
-  @import './assets/main.sass';
+@import './assets/main.sass';
 
-  .app {
-    width: 100vw;
-    display: grid;
-    grid-template-areas:  
-      "nav header" 
-      "nav router";
-    grid-template-columns: 72rem 1fr;
-    grid-template-rows: 76rem 1fr;
-    
-    border-radius: 16rem;
-  }
+.app {
+  width: 100vw;
+  display: grid;
+  grid-template-areas:
+    "nav header"
+    "nav router";
+  grid-template-columns: 72rem 1fr;
+  grid-template-rows: 76rem 1fr;
 
-  .nav {
-    grid-area: nav;
+  border-radius: 16rem;
+}
 
-    background-color: $block-background-color;
-  }
+.nav {
+  grid-area: nav;
 
-  .header {
-    grid-area: header;
+  background-color: $block-background-color;
+}
 
-    background-color: $block-background-color;
-  }
+.header {
+  grid-area: header;
 
-  .router {
-    grid-area: router;
+  background-color: $block-background-color;
+}
 
-  }
-  
+.router {
+  grid-area: router;
 
+}
 </style>
